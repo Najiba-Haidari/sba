@@ -1,141 +1,135 @@
 // The provided course information.
 const CourseInfo = {
-    id: 451,
-    name: "Introduction to JavaScript"
-  };
-  
-  // The provided assignment group.
-  const AssignmentGroup = {
-    id: 12345,
-    name: "Fundamentals of JavaScript",
-    course_id: 451,
-    group_weight: 25,
-    assignments: [
-      {
-        id: 1,
-        name: "Declare a Variable",
-        due_at: "2023-01-25",
-        points_possible: 50
-      },
-      {
-        id: 2,
-        name: "Write a Function",
-        due_at: "2023-02-27",
-        points_possible: 150
-      },
-      {
-        id: 3,
-        name: "Code the World",
-        due_at: "3156-11-15",
-        points_possible: 500
-      }
-    ]
-  };
-  
-  // The provided learner submission data.
-  const LearnerSubmissions = [
+  id: 451,
+  name: "Introduction to JavaScript"
+};
+
+// The provided assignment group.
+const AssignmentGroup = {
+  id: 12345,
+  name: "Fundamentals of JavaScript",
+  course_id: 451,
+  group_weight: 25,
+  assignments: [
     {
-      learner_id: 125,
-      assignment_id: 1,
-      submission: {
-        submitted_at: "2023-01-25",
-        score: 47
-      }
+      id: 1,
+      name: "Declare a Variable",
+      due_at: "2023-01-25",
+      points_possible: 50
     },
     {
-      learner_id: 125,
-      assignment_id: 2,
-      submission: {
-        submitted_at: "2023-02-12",
-        score: 150
-      }
+      id: 2,
+      name: "Write a Function",
+      due_at: "2023-02-27",
+      points_possible: 150
     },
     {
-      learner_id: 125,
-      assignment_id: 3,
-      submission: {
-        submitted_at: "2023-01-25",
-        score: 400
-      }
-    },
-    {
-      learner_id: 132,
-      assignment_id: 1,
-      submission: {
-        submitted_at: "2023-01-24",
-        score: 39
-      }
-    },
-    {
-      learner_id: 132,
-      assignment_id: 2,
-      submission: {
-        submitted_at: "2023-03-07",
-        score: 140
-      }
+      id: 3,
+      name: "Code the World",
+      due_at: "3156-11-15",
+      points_possible: 500
     }
-  ];
-  
-  function getLearnerData(course, ag, submissions) {
-    // here, we would process this data to achieve the desired result.
-const result = [];
-const learners= {};
-// // ID from learnersSubmission 
-// const uniqueIds =  new Set();
-// submissions.forEach(submission => {
-//   uniqueIds.add(submission.learner_id)
-// })
+  ]
+};
 
-// result.push(...uniqueIds)
-for (let i = 0; i < submissions.length; i++) {
-        // submissions[i].learner_id= learners[i];
-   
-    if (learners.id === submissions[i].learner_id){
-            // console.log(learners.id)
-            continue;
-        }
-        console.log(submissions[i].learner_id)
-        
-    learners["id"] = submissions[i].learner_id;
-    learners["avg"] = 0;
-    learners['as1'] = 0;
-    learners['as2'] = 0;
-    // console.log(submissions[i].learner_id)
-
-    console.log(learners)
-    result.push(learners);
-    // console.log(result)
-}
-console.log(result)
-// console.log(learners)
-function filterId(){
-
-}
-
-const checkObjValue = (obj, value) => learners[i].values(obj).includes("2023");
-// average score = total score (learnerSubmission)/ total possible points (AssignmentGroup)
-function averageScore(submissions){
-    let sumScoreSubmission = 0;
-    let sumPossibleScore = 0;
-    for (let i = 0; i < submissions.length; i++) {
-        if (submissions[i].learner_id == learners.id) {
-            sumScoreSubmission += submissions[i].submission.score;
-            // sumPossibleScore += ag.assignments[i].points_possible
-        }
-        
+// The provided learner submission data.
+const LearnerSubmissions = [
+  {
+    learner_id: 125,
+    assignment_id: 1,
+    submission: {
+      submitted_at: "2023-01-25",
+      score: 47
     }
-    console.log(sumScoreSubmission)
-}
-averageScore(LearnerSubmissions)
-
-  
-    return result;
+  },
+  {
+    learner_id: 125,
+    assignment_id: 2,
+    submission: {
+      submitted_at: "2023-02-12",
+      score: 150
+    }
+  },
+  {
+    learner_id: 125,
+    assignment_id: 3,
+    submission: {
+      submitted_at: "2023-01-25",
+      score: 400
+    }
+  },
+  {
+    learner_id: 132,
+    assignment_id: 1,
+    submission: {
+      submitted_at: "2023-01-24",
+      score: 39
+    }
+  },
+  {
+    learner_id: 132,
+    assignment_id: 2,
+    submission: {
+      submitted_at: "2023-03-07",
+      score: 140
+    }
   }
-  
-  const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-  
-  console.log(result);
-  
+];
+
+function getLearnerData(course, ag, submissions) {
+  const result = [];
+  const learners = {};
+
+  for (const submission of submissions) {
+    const learnerId = submission.learner_id;
+    const assignmentId = submission.assignment_id;
+    const score = submission.submission.score;
+
+    if (!learners[learnerId]) {
+      // learner's scores if not already present are to initialize
+      learners[learnerId] = {
+        totalScore: 0,
+        totalPossibleScore: 0
+      };
+      // console.log(learners[learnerId])
+    }
+
+    learners[learnerId].totalScore += score;
+    // console.log(`score for each assignment submitted ${score} `)
+    //based on submission of assignment- total score and total possible points 
+    learners[learnerId].totalPossibleScore += ag.assignments.find(x => x.id === assignmentId).points_possible;
+  }
+
+//each learner
+  for (const learnerId in learners) {
+    const learner = {
+      id: parseInt(learnerId), // to get the number form used parseInt
+      //finding the average for scores of assignment submitted
+      avg: (learners[learnerId].totalScore / learners[learnerId].totalPossibleScore).toFixed(2) // average 
+    };
+
+    // score for each assignment
+    for (const assignment of ag.assignments) {
+      //only two assignments for each learner
+      const submission = submissions.find(z => z.learner_id === learner.id && z.assignment_id === assignment.id && assignment.id <= 2);
+      // console.log(submission)
+      if (submission) {
+        //finding the percentage or ratio for the the assignment submitted for each learner
+        learner[assignment.id] = (submission.submission.score / assignment.points_possible).toFixed(2);
+      }
+    }
+
+    result.push(learner);
+    console.log(learner)
+  }
+
+  return result;
+}
+
+const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+console.log(result);
+
+
 
 //   const result = [
 //       {
