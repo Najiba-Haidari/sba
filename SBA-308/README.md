@@ -1,4 +1,4 @@
-# SBA-01
+# SBA-02
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Objective of This SBA - Fundamentals of Javascript
