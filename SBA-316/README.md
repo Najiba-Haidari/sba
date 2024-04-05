@@ -1,14 +1,15 @@
-# SBA-02
+# SBA-316
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Objective of This SBA - Fundamentals of Javascript
+## Objective of This SBA - DOM
 
-- Employ basic JavaScript syntax accurately .
-- Implement control flow structures such as conditionals and loops effectively .
-- Use arrays and objects to organize and manage data.
-- Develop functions to create reusable code.
-- Utilize loops and iteration to navigate through data collections.
-- Implement error handling to manage potential code failures gracefully .
+- Use DOM properties, methods, and techniques to create a web application that provides a
+dynamic user experience.
+- Use BOM properties, methods, and techniques to facilitate creation of a dynamic web
+application.
+- Demonstrate proficiency with event-driven programming and DOM events.
+- Implement basic form validation using any combination of built-in HTML validation attributes
+and DOM-event-driven JavaScript validation.
 
 ## Table of Contents 
 
@@ -18,10 +19,10 @@
 
 
 ## Github Link
-- Github Repo URL: https://github.com/Najiba-Haidari/sba/tree/main/SBA-308
+- Github Repo URL: https://github.com/Najiba-Haidari/sba/tree/main/SBA-316
 
 ## Installation
-This app needs to be run in either CLI or shell.
+This app needs to be run in browser.
 * open index.html in your browser
   
 ## License
