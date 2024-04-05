@@ -24,7 +24,7 @@ const handleAddProject = function (event) {
     errorMessage.innerHTML = "<p>Please Fill in All the Parts</p>";
     errorMessage.style.border = "3px solid red";
     // console.log(errorMessage)
-    return;
+    return false;
   } else {
     errorMessage.innerHTML = "";
     errorMessage.style.border = "";
